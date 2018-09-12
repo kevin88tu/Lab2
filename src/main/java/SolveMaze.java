@@ -33,9 +33,49 @@ public class SolveMaze {
          * You should be able to solve a 10 x 10 maze in (far fewer than) 1000 steps.
          * Feel free to adjust this number if you experiment with other mazes.
          */
-        for (int step = 0; step < 1000; step++) {
-            // Implement your maze solving algorithm here
+
+        int ctr = 0;
+
+        /*while (!maze.isFinished()) {
+            maze.turnRight();
+            if (!maze.canMove()) {
+                maze.turnLeft();
+                if (maze.canMove()) {
+                    maze.move();
+                } else {
+                    maze.turnLeft();
+                    if (maze.canMove()) {
+                        maze.move();
+                    } else {
+                        maze.turnLeft();
+                        maze.move();
+                    }
+                }
+            } else {
+                maze.move();
+            }
+            ctr++;
+        }*/
+
+        //Random Walk
+        while (!maze.isFinished()) {
+            if (maze.canMove()) {
+                maze.move();
+            } else {
+                //double whatever = Math.random();
+                int randomNumber = (int) (Math.random() * 2.0);
+                System.out.println(randomNumber);
+                //System.out.println(whatever);
+                if (randomNumber == 0) {
+                    maze.turnLeft();
+                } else {
+                    maze.turnRight();
+                }
+            }
+            System.out.println(maze.getCurrentLocation());
         }
+
+        System.out.println("Steps: " + ctr);
 
         if (maze.isFinished()) {
             System.out.println("You solved the maze!");
